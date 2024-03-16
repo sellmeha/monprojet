@@ -1,0 +1,33 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+<!--Contact form-->
+<section>
+<div class="container text-center mt-3">
+    <div class="row justify-content-center">
+        <div class="col-6 shadow">
+             <div>
+                <h2>Envoyer un message</h2>
+                   <form method="post">
+                        {% csrf_token %}
+                       <label for="your_email">Votre Email:</label><br>
+                     <input type="email" id="your_email" name="your_email"><br>
+                      <label for="destination_email">Email de destination:</label><br>
+                     <select id="destination_email" name="destination_email">
+                        {% for email in emails %}
+                      <option value="{{ email }}">{{ email }}</option>
+                      
+                       {% endfor %}
+                       </select><br>
+                       <label for="message">Message:</label><br>
+                       <textarea id="message" name="message" rows="4" cols="50"></textarea><br>
+                     <input type="submit" value="Envoyer">
+                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>
+{% endblock content %}

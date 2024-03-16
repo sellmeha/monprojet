@@ -1,0 +1,46 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block content %}
+    <!-- DataTales Example -->
+<section>
+    <div class="card shadow mb-4">
+        <div class="container">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-center">Liste de Etablissement</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center justify-content-center" id="dataTable" width="300%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Tel</th>
+                                <th>Matiere Demande</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for etab in etabs %}
+                            <tr>
+                                <td>{{ etab.name }}</td>
+                                <td>{{ etab.address }}</td>
+                                <td>{{ etab.email }}</td>
+                                <td>{{ etab.mobile }}</td>
+                                <td>
+                                    {% for subject in etab.subject.all %}
+                                        {{ subject.name }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+                               
+                            </tr>
+                            {% endfor %}
+                       
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
